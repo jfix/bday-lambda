@@ -97,14 +97,16 @@ const findEvent = async (opts) => {
         opts.timeMin = dayjs(opts.date).startOf('day').format();
         opts.timeMax = dayjs(opts.date).endOf('day').format();
 
+        console.log(`FINDEVENT: ${opts.timeMin} - ${opts.timeMax}`);
+
         const arr =  await getBirthdays(opts);
         let birthdayChildren = '';
         if (arr.length < 1) {
-            return
+            return;
         } else if (arr.length === 2) {
-            birthdayChildren = arr.map((p) => `*${p.person}*`).join(' and ')
+            birthdayChildren = arr.map((p) => `*${p.person}*`).join(' and ');
         } else {
-            birthdayChildren = arr.map((p) => `*${p.person}*`).join(', ')
+            birthdayChildren = arr.map((p) => `*${p.person}*`).join(', ');
         }
         return birthdayChildren;
     } catch (error) {
