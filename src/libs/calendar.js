@@ -94,8 +94,8 @@ const findEvent = async (opts) => {
     try {
         if (!opts.date) throw Error("Missing 'date' value");
         if (!(opts.date || Object.prototype.toString.call(opts.date) !== "[object Date]")) throw Error("Wrong type, expected Date object");
-        opts.timeMin = dayjs(opts.date).startOf('day').format();
-        opts.timeMax = dayjs(opts.date).endOf('day').format();
+        opts.timeMin = dayjs(opts.date).tz("Europe/Paris").startOf('day').format();
+        opts.timeMax = dayjs(opts.date).tz("Europe/Paris").endOf('day').format();
 
         console.log(`FINDEVENT: ${opts.timeMin} - ${opts.timeMax}`);
 
